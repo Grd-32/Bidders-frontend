@@ -13,6 +13,7 @@ import Transactions from './components/admin/Transactions';
 import Notifications from './components/admin/Notifications';
 import Chart from './components/admin/Chart';
 import LandingPage from './pages/LandingPage';
+import LandingPageOne from './pages/LandingPageOne';
 import TenderInformation from './pages/TenderInformation';
 import TenderNotifications from './pages/TenderNotification';
 import SupplierPreQualification from './pages/SupplierPreQualification';
@@ -32,6 +33,7 @@ const App = () => {
       <Routes>
         <Route path="/tender-information" element={<HomePage />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/company" element={<LandingPageOne />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/tender-notification" element={<TenderNotifications />} />

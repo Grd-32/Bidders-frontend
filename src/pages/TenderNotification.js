@@ -23,6 +23,7 @@ const TenderNotification = () => {
   const [selectedCountries, setSelectedCountries] = useState([]);
   const [charge, setCharge] = useState(0);
   const [notificationMethod, setNotificationMethod] = useState('email');
+  const [subscriptionType, setSubscriptionType] = useState('monthly');
   const [contactDetails, setContactDetails] = useState({
     email: '',
     sms: '',
@@ -50,10 +51,22 @@ const TenderNotification = () => {
   }, []);
 
   const updateCharge = (categoriesCount, countriesCount) => {
-    const baseCharge = 300;
-    const extraCategoryCharge = Math.max(0, categoriesCount - 1) * 100;
-    const extraCountryCharge = Math.max(0, countriesCount - 1) * 200;
+    const baseCharge = subscriptionType === 'monthly' ? 300 : 3000;
+    const extraCategoryCharge = Math.max(0, categoriesCount - 1) * (subscriptionType === 'monthly' ? 100 : 1000);
+    const extraCountryCharge = Math.max(0, countriesCount - 1) * (subscriptionType === 'monthly' ? 200 : 2000);
     setCharge(baseCharge + extraCategoryCharge + extraCountryCharge);
+  };
+
+  const handleSelectAll = (type) => {
+    if (type === 'categories') {
+      const allSelected = selectedCategories.length === categories.length;
+      setSelectedCategories(allSelected ? [] : categories);
+      updateCharge(allSelected ? 0 : categories.length, selectedCountries.length);
+    } else if (type === 'countries') {
+      const allSelected = selectedCountries.length === countries.length;
+      setSelectedCountries(allSelected ? [] : countries);
+      updateCharge(selectedCategories.length, allSelected ? 0 : countries.length);
+    }
   };
 
   const handleCategoryChange = (category) => {
@@ -76,6 +89,11 @@ const TenderNotification = () => {
     setContactDetails((prev) => ({ ...prev, [field]: value }));
   };
 
+  const handleSubscriptionChange = (value) => {
+    setSubscriptionType(value);
+    updateCharge(selectedCategories.length, selectedCountries.length);
+  };
+
   const handleSubmit = async () => {
     const selectedContactDetail =
       notificationMethod === 'email'
@@ -83,27 +101,45 @@ const TenderNotification = () => {
         : notificationMethod === 'sms'
         ? contactDetails.sms
         : contactDetails.inApp;
-
+  
     if (!selectedContactDetail.trim()) {
       alert('Please enter your contact details for the selected notification method.');
       return;
     }
-
+  
     try {
       const payload = {
-        amount: charge,
+        userId: 'USER_ID_HERE', // Replace with the actual user ID if available
         notificationMethod,
+        subscriptionType,
         selectedCategories,
         selectedCountries,
         contactDetail: selectedContactDetail,
+        charge,
       };
-      const response = await initiateMpesaPayment(payload);
-      alert('Payment successful! Preferences saved.');
+  
+      const response = await fetch('http://localhost:5000/api/notifications/preferences', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        alert('Preferences saved and payment initiated. Follow payment link.');
+        window.location.href = data.data.link; // Redirect to payment link
+      } else {
+        const error = await response.json();
+        alert(`Error: ${error.message || 'Failed to save preferences.'}`);
+      }
     } catch (error) {
       console.error('Error initiating payment:', error);
       alert('Failed to save preferences. Please try again.');
     }
   };
+  
 
   return (
     <Box
@@ -122,11 +158,32 @@ const TenderNotification = () => {
       </Typography>
       <Divider sx={{ mb: 3 }} />
 
+      {/* Subscription Type */}
+      <Typography variant="body1" gutterBottom>
+        Subscription Type
+      </Typography>
+      <FormControl fullWidth sx={{ mb: 3 }}>
+        <Select
+          value={subscriptionType}
+          onChange={(e) => handleSubscriptionChange(e.target.value)}
+        >
+          <MenuItem value="monthly">Monthly</MenuItem>
+          <MenuItem value="yearly">Yearly</MenuItem>
+        </Select>
+      </FormControl>
+
       {/* Category Selection */}
       <Typography variant="body1" gutterBottom>
         Select Categories (Extra charge for more than 1 category)
       </Typography>
       <FormControl fullWidth sx={{ mb: 3 }}>
+        <MenuItem>
+          <Checkbox
+            checked={selectedCategories.length === categories.length}
+            onChange={() => handleSelectAll('categories')}
+          />
+          Select All Categories
+        </MenuItem>
         <Select
           multiple
           value={selectedCategories}
@@ -138,7 +195,7 @@ const TenderNotification = () => {
                 checked={selectedCategories.includes(category)}
                 onChange={() => handleCategoryChange(category)}
               />
-              {category} (+ Ksh 100)
+              {category} (+ {subscriptionType === 'monthly' ? 'Ksh 100' : 'Ksh 1000'})
             </MenuItem>
           ))}
         </Select>
@@ -149,6 +206,13 @@ const TenderNotification = () => {
         Select Countries (Extra charge for more than 1 country)
       </Typography>
       <FormControl fullWidth sx={{ mb: 3 }}>
+        <MenuItem>
+          <Checkbox
+            checked={selectedCountries.length === countries.length}
+            onChange={() => handleSelectAll('countries')}
+          />
+          Select All Countries
+        </MenuItem>
         <Select
           multiple
           value={selectedCountries}
@@ -160,7 +224,7 @@ const TenderNotification = () => {
                 checked={selectedCountries.includes(country)}
                 onChange={() => handleCountryChange(country)}
               />
-              {country} (+ Ksh 200)
+              {country} (+ {subscriptionType === 'monthly' ? 'Ksh 200' : 'Ksh 2000'})
             </MenuItem>
           ))}
         </Select>
@@ -192,9 +256,7 @@ const TenderNotification = () => {
           variant="outlined"
           fullWidth
           value={contactDetails.email}
-          onChange={(e) =>
-            handleContactDetailChange('email', e.target.value)
-          }
+          onChange={(e) => handleContactDetailChange('email', e.target.value)}
           sx={{ mb: 3 }}
         />
       )}
@@ -205,9 +267,7 @@ const TenderNotification = () => {
           variant="outlined"
           fullWidth
           value={contactDetails.sms}
-          onChange={(e) =>
-            handleContactDetailChange('sms', e.target.value)
-          }
+          onChange={(e) => handleContactDetailChange('sms', e.target.value)}
           sx={{ mb: 3 }}
         />
       )}
@@ -217,9 +277,7 @@ const TenderNotification = () => {
           variant="outlined"
           fullWidth
           value={contactDetails.inApp}
-          onChange={(e) =>
-            handleContactDetailChange('inApp', e.target.value)
-          }
+          onChange={(e) => handleContactDetailChange('inApp', e.target.value)}
           sx={{ mb: 3 }}
         />
       )}

@@ -1,367 +1,392 @@
-import React from 'react';
+import React from "react";
 import {
-  AppBar,
-  Toolbar,
-  IconButton,
-  Typography,
-  Button,
   Box,
+  Typography,
   Grid,
-  TextField,
+  Button,
   Container,
-  Card,
-  CardContent,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
-import PublicIcon from '@mui/icons-material/Public';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ExploreIcon from '@mui/icons-material/Explore';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import { Link } from 'react-router-dom';
-import Carousel from 'react-material-ui-carousel';
-import Header from '../components/MainHeader';
+} from "@mui/material";
+import Carousel from "react-material-ui-carousel";
+import SearchIcon from "@mui/icons-material/Search";
+import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
+import PublicIcon from "@mui/icons-material/Public";
+import { Facebook, Twitter, LinkedIn, Instagram } from "@mui/icons-material";
 
-const LandingPage = () => {
+const LandingPageOne = () => {
   return (
     <Box>
- 
-<Box>
-  <Carousel navButtonsAlwaysVisible indicators={true}>
-    {/* Slide 1 */}
-    <Box
-      sx={{
-        height: '90vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        backgroundImage: 'url(/images/bidders1.png)', // Replace with your first image URL
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        color: 'white',
-      }}
-    >
-      <Typography variant="h6" gutterBottom>
-        WELCOME TO BIDDERS PORTAL TM
-      </Typography>
-      <Typography 
-      variant="h1" 
-      sx={{ fontWeight: 'bold' }}
-      gutterBottom
-      >
-        Your guide to winning tenders in Africa
-      </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ mt: 3, fontSize: '1.2rem', padding: '10px 20px' }}
-        component={Link}
-        to="/tender-information"
-      >
-        View all tenders
-      </Button>
-    </Box>
-
-    {/* Slide 2 */}
-    <Box
-      sx={{
-        height: '90vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        backgroundImage: 'url(/images/bidders2.png)', // Replace with your second image URL
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        color: 'white',
-      }}
-    >
-      <Typography variant="h4" gutterBottom>
-        Access Tenders Globally
-      </Typography>
-      <Typography variant="h2" gutterBottom>
-        Empowering businesses to grow worldwide
-      </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ mt: 3, fontSize: '1.2rem', padding: '10px 20px' }}
-        component={Link}
-        to="/tender-information"
-      >
-        View all tenders
-      </Button>
-    </Box>
-
-    {/* Slide 3 */}
-    <Box
-      sx={{
-        height: '90vh',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        textAlign: 'center',
-        backgroundImage: 'url(/images/bidders3.png)', // Replace with your third image URL
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        color: 'white',
-      }}
-    >
-      <Typography variant="h4" gutterBottom>
-        Seamless Application Process
-      </Typography>
-      <Typography variant="h2" gutterBottom>
-        Apply for tenders effortlessly
-      </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        sx={{ mt: 3, fontSize: '1.2rem', padding: '10px 20px' }}
-        component={Link}
-        to="/tender-information"
-      >
-        View all tenders
-      </Button>
-    </Box>
-  </Carousel>
-</Box>
-
-      {/* About Section */}
-      <Container id="about" sx={{ py: 6 }}>
-        <Typography variant="h4" gutterBottom textAlign="center">
-          About Us
-        </Typography>
-        <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
-          TenderHub simplifies tender access by aggregating tenders from various sources
-          and offering a seamless application experience. Our mission is to
-          empower businesses to grow by connecting them with procurement
-          opportunities globally.
-        </Typography>
-      </Container>
-
-      {/* Services Section */}
-      <Box id="services" sx={{ backgroundColor: '#f9f9f9', py: 6 }}>
-        <Container>
-          <Typography variant="h4" gutterBottom textAlign="center">
-            Our Services
-          </Typography>
-          <Grid container spacing={4} sx={{ mt: 2 }}>
-            <Grid item xs={12} sm={6} md={4}>
-              <Box textAlign="center">
-                <SearchIcon fontSize="large" color="primary" />
-                <Typography variant="h6" sx={{ mt: 2 }}>
-                  Search Tenders
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  Easily search and filter tenders based on categories, countries, and methods.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Box textAlign="center">
-                <AssignmentTurnedInIcon fontSize="large" color="primary" />
-                <Typography variant="h6" sx={{ mt: 2 }}>
-                  Seamless Application
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  Apply for tenders directly from our platform with minimal effort.
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Box textAlign="center">
-                <PublicIcon fontSize="large" color="primary" />
-                <Typography variant="h6" sx={{ mt: 2 }}>
-                  Global Opportunities
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  Access procurement opportunities from around the world.
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-        </Container>
-      </Box>
-
-      {/* How It Works Section */}
-      <Container sx={{ py: 6 }}>
-        <Typography variant="h4" gutterBottom textAlign="center">
-          How It Works
-        </Typography>
-        <Grid container spacing={4} sx={{ mt: 2 }}>
-          <Grid item xs={12} sm={4}>
-            <Card>
-              <CardContent textAlign="center">
-                <AccountCircleIcon fontSize="large" color="secondary" />
-                <Typography variant="h6" sx={{ mt: 2 }}>
-                  Step 1: Create an Account
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  Sign up to get started with TenderHub.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Card>
-              <CardContent textAlign="center">
-                <ExploreIcon fontSize="large" color="secondary" />
-                <Typography variant="h6" sx={{ mt: 2 }}>
-                  Step 2: Browse Tenders
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  Explore tenders from multiple categories.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <Card>
-              <CardContent textAlign="center">
-                <EmojiEventsIcon fontSize="large" color="secondary" />
-                <Typography variant="h6" sx={{ mt: 2 }}>
-                  Step 3: Apply & Win
-                </Typography>
-                <Typography variant="body2" sx={{ mt: 1 }}>
-                  Submit applications and seize opportunities.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
-      </Container>
-
-      {/* Call to Action Section */}
-      <Box
-        sx={{
-          py: 6,
-          backgroundImage: 'url(/images/tender-bg.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          color: 'white',
-          textAlign: 'center',
-        }}
-      >
-        <Typography variant="h4" gutterBottom>
-          Ready to Get Started?
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 4 }}>
-          Join TenderHub today and find your next big opportunity.
-        </Typography>
-        <Button
-          variant="contained"
-          color="secondary"
-          sx={{ fontSize: '1.2rem', padding: '10px 20px' }}
+      {/* Hero Section */}
+      <Carousel navButtonsAlwaysVisible indicators={false}>
+        <Box
+          sx={{
+            height: "90vh",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            textAlign: "center",
+            backgroundImage: 'url("/images/bidders1.png")',
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            color: "white",
+          }}
         >
-          Sign Up Now
-        </Button>
-      </Box>
-
-      {/* Pricing Section */}
-      <Box id="pricing" sx={{ backgroundColor: '#f9f9f9', py: 6 }}>
-        <Container>
-          <Typography variant="h4" gutterBottom textAlign="center">
-            Membership Pricing
+          <Typography variant="h3" sx={{ fontWeight: "bold", mb: 2 }}>
+            Welcome to Bidders Portal TM
           </Typography>
-          <Grid container spacing={4} sx={{ mt: 2 }}>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card>
-                <CardContent textAlign="center">
-                  <Typography variant="h6" gutterBottom>
-                    Basic Plan
-                  </Typography>
-                  <Typography variant="h4" color="primary">
-                    Free
-                  </Typography>
-                  <Typography variant="body2" sx={{ mt: 1 }}>
-                    Access limited tenders and basic features.
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid item xs={12} sm={6} md={4}>
-              <Card>
-                <CardContent textAlign="center">
-                  <Typography variant="h6" gutterBottom>
-                    Pro Plan
-                  </Typography>
-                  <Typography variant="h4" color="primary">
-                    $50/mo
-                  </Typography>
-                  <Typography variant="body2" sx={{ mt: 1 }}>
-                    Unlimited tenders, priority support, and advanced features.
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
+          <Typography
+            variant="h5"
+            sx={{ mb: 4, maxWidth: "600px", mx: "auto", lineHeight: 1.5 }}
+          >
+            Your one-stop platform for finding verified tenders and procurement
+            opportunities across Africa and beyond.
+          </Typography>
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            sx={{ px: 4, py: 1.5 }}
+            href="/tender-information"
+          >
+            View All Tenders
+          </Button>
+        </Box>
+      </Carousel>
+
+      {/* About Us Section */}
+      <Container sx={{ py: 10 }}>
+        <Grid container spacing={6} alignItems="center">
+          {/* Image */}
+          <Grid item xs={12} md={6}>
+            <Box
+              component="img"
+              src="/images/search-tender.jpeg"
+              alt="About Us"
+              sx={{
+                width: "100%",
+                height: "auto",
+                borderRadius: "15px",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+              }}
+            />
           </Grid>
-        </Container>
-      </Box>
-
-      {/* Client Reviews Section */}
-      <Container sx={{ py: 6 }}>
-        <Typography variant="h4" gutterBottom textAlign="center">
-          What Our Clients Say
-        </Typography>
-        <Carousel indicators={false} navButtonsAlwaysVisible>
-          <Box textAlign="center" p={4}>
-            <Typography variant="body1" gutterBottom>
-              "TenderHub made it so easy to find and apply for tenders. Highly recommend!"
+          {/* Text */}
+          <Grid item xs={12} md={6}>
+            <Typography variant="h4" sx={{ fontWeight: "bold", mb: 4 }}>
+              About Us
             </Typography>
-            <Typography variant="body2">- John Doe</Typography>
-          </Box>
-          <Box textAlign="center" p={4}>
-            <Typography variant="body1" gutterBottom>
-              "Amazing platform with seamless user experience."
+            <Typography
+              variant="body1"
+              sx={{ mb: 3, lineHeight: 1.8, color: "text.secondary" }}
+            >
+              Bidders Portal TM is a transformative platform designed to empower
+              businesses of all sizes. With our advanced aggregation technology,
+              we simplify access to tender opportunities across Africa and
+              beyond.
             </Typography>
-            <Typography variant="body2">- Jane Smith</Typography>
-          </Box>
-        </Carousel>
-      </Container>
-
-      {/* Contact Section */}
-      <Container id="contact" sx={{ py: 6 }}>
-        <Typography variant="h4" gutterBottom textAlign="center">
-          Contact Us
-        </Typography>
-        <Typography variant="body1" textAlign="center" sx={{ mb: 4 }}>
-          Have questions or need support? Reach out to us!
-        </Typography>
-        <Grid container spacing={4} justifyContent="center">
-          <Grid item xs={12} sm={6}>
-            <TextField
-              label="Your Name"
-              fullWidth
+            <Typography
+              variant="body1"
+              sx={{ mb: 3, lineHeight: 1.8, color: "text.secondary" }}
+            >
+              Whether you’re a small startup or a large enterprise, we provide a
+              seamless experience to search, filter, and apply for procurement
+              opportunities. Our mission is to help you achieve your business
+              goals by delivering verified and curated tenders.
+            </Typography>
+            <Button
               variant="outlined"
-              sx={{ mb: 3 }}
-            />
-            <TextField
-              label="Your Email"
-              fullWidth
-              variant="outlined"
-              sx={{ mb: 3 }}
-            />
-            <TextField
-              label="Message"
-              fullWidth
-              multiline
-              rows={4}
-              variant="outlined"
-              sx={{ mb: 3 }}
-            />
-            <Button variant="contained" color="primary" fullWidth>
-              Send Message
+              color="primary"
+              size="large"
+              sx={{ mt: 2 }}
+              href="/learn-more"
+            >
+              Learn More
             </Button>
           </Grid>
         </Grid>
       </Container>
+
+      {/* Features Section */}
+      <Container sx={{ py: 10, background: "#f9f9f9", borderRadius: "15px" }}>
+        <Typography
+          variant="h4"
+          sx={{ textAlign: "center", fontWeight: "bold", mb: 6 }}
+        >
+          Why Choose Us
+        </Typography>
+        <Grid container spacing={4}>
+          {[
+            {
+              icon: <SearchIcon fontSize="large" color="primary" />,
+              title: "Comprehensive Search",
+              description:
+                "Explore thousands of tenders using advanced filters tailored to your business needs.",
+            },
+            {
+              icon: <AssignmentTurnedInIcon fontSize="large" color="primary" />,
+              title: "Verified Listings",
+              description:
+                "Our tenders undergo a rigorous verification process to ensure accuracy and transparency.",
+            },
+            {
+              icon: <PublicIcon fontSize="large" color="primary" />,
+              title: "Global Opportunities",
+              description:
+                "Gain access to procurement opportunities from diverse industries worldwide.",
+            },
+          ].map((feature, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Box
+                sx={{
+                  textAlign: "center",
+                  p: 4,
+                  borderRadius: "15px",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+                  background: "white",
+                  "&:hover": {
+                    transform: "scale(1.05)",
+                    transition: "all 0.3s ease",
+                  },
+                }}
+              >
+                {feature.icon}
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", mt: 2, mb: 1 }}
+                >
+                  {feature.title}
+                </Typography>
+                <Typography variant="body2" sx={{ color: "text.secondary" }}>
+                  {feature.description}
+                </Typography>
+              </Box>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+      
+
+      {/* Big CTA Section */}
+      <Box
+        sx={{
+          py: 8,
+          px: 3,
+          background: "linear-gradient(90deg, #4b6cb7, #182848)",
+          textAlign: "center",
+          color: "white",
+        }}
+      >
+        <Typography
+          variant="h4"
+          sx={{ fontWeight: "bold", mb: 2 }}
+        >
+          Ready to Elevate Your Business?
+        </Typography>
+        <Typography
+          variant="h6"
+          sx={{ mb: 4, maxWidth: "600px", mx: "auto", lineHeight: 1.5 }}
+        >
+          Join thousands of businesses already taking advantage of verified
+          tenders and exclusive opportunities with Bidders Portal TM.
+        </Typography>
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            backgroundColor: "#ff9800",
+            color: "white",
+            fontSize: "1.2rem",
+            px: 5,
+            py: 1.5,
+            "&:hover": { backgroundColor: "#ffb74d" },
+          }}
+          href="/get-started"
+        >
+          Get Started Today
+        </Button>
+      </Box>
+      <Box>
+      {/* Contact Us / Leave a Comment Section */}
+      <Container sx={{ py: 10 }}>
+        <Typography
+          variant="h4"
+          sx={{ textAlign: "center", fontWeight: "bold", mb: 6 }}
+        >
+          Leave a Comment or Contact Us
+        </Typography>
+        <Grid container spacing={6}>
+          {/* Left Column: Form */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                padding: 4,
+                borderRadius: 4,
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+                background: "rgba(255, 255, 255, 0.9)",
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+                Send Us a Message
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: "rgba(0, 0, 0, 0.7)", mb: 3 }}
+              >
+                Have questions or feedback? We're here to help! Fill in the form
+                below and we'll get back to you as soon as possible.
+              </Typography>
+
+              {/* Form */}
+              <form>
+                <Box sx={{ mb: 3 }}>
+                  <input
+                    type="text"
+                    placeholder="Your Name"
+                    required
+                    style={{
+                      width: "100%",
+                      padding: "12px",
+                      borderRadius: "8px",
+                      border: "1px solid #ccc",
+                      marginBottom: "12px",
+                    }}
+                  />
+                </Box>
+                <Box sx={{ mb: 3 }}>
+                  <input
+                    type="email"
+                    placeholder="Your Email"
+                    required
+                    style={{
+                      width: "100%",
+                      padding: "12px",
+                      borderRadius: "8px",
+                      border: "1px solid #ccc",
+                      marginBottom: "12px",
+                    }}
+                  />
+                </Box>
+                <Box sx={{ mb: 3 }}>
+                  <textarea
+                    placeholder="Your Message"
+                    required
+                    rows="4"
+                    style={{
+                      width: "100%",
+                      padding: "12px",
+                      borderRadius: "8px",
+                      border: "1px solid #ccc",
+                      marginBottom: "12px",
+                    }}
+                  />
+                </Box>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  sx={{
+                    width: "100%",
+                    padding: "12px",
+                    fontSize: "1rem",
+                    textTransform: "none",
+                    borderRadius: "8px",
+                  }}
+                >
+                  Submit
+                </Button>
+              </form>
+            </Box>
+          </Grid>
+
+          {/* Right Column: Contact Information */}
+          <Grid item xs={12} md={6}>
+            <Box
+              sx={{
+                padding: 4,
+                borderRadius: 4,
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
+                background: "rgba(255, 255, 255, 0.9)",
+              }}
+            >
+              <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+                Get In Touch
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{ color: "rgba(0, 0, 0, 0.7)", mb: 3 }}
+              >
+                Our team is ready to assist you with any inquiries or feedback.
+                Reach out to us through the following contact details:
+              </Typography>
+
+              <Typography variant="body2" sx={{ color: "black", mb: 2 }}>
+                <strong>Email:</strong> support@biddersportal.com
+              </Typography>
+              <Typography variant="body2" sx={{ color: "black", mb: 2 }}>
+                <strong>Phone:</strong> +1 234 567 890
+              </Typography>
+              <Typography variant="body2" sx={{ color: "black", mb: 2 }}>
+                <strong>Address:</strong> 123 Business Avenue, City, Country
+              </Typography>
+
+              {/* Social Media Icons */}
+              <Box sx={{ display: "flex", justifyContent: "center", gap: 3, mt: 5 }}>
+                <a
+                  href="https://www.facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#1877F2",
+                    fontSize: "36px",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Facebook />
+                </a>
+                <a
+                  href="https://www.twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#1DA1F2",
+                    fontSize: "36px",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Twitter />
+                </a>
+                <a
+                  href="https://www.linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#0077B5",
+                    fontSize: "36px",
+                    textDecoration: "none",
+                  }}
+                >
+                  <LinkedIn />
+                </a>
+                <a
+                  href="https://www.instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    color: "#E1306C",
+                    fontSize: "36px",
+                    textDecoration: "none",
+                  }}
+                >
+                  <Instagram />
+                </a>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
     </Box>
   );
 };
 
-export default LandingPage;
+export default LandingPageOne;
