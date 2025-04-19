@@ -25,6 +25,7 @@ import ContactPage from './pages/Contact';
 import Payment from './pages/Payment';
 import Terms from './pages/Terms';
 import Privacy from './pages/PrivacyPolicy';
+import InvoicePage from './pages/InvoicePage'; // Import the InvoicePage component
 
 const App = () => {
   return (
@@ -61,6 +62,7 @@ const App = () => {
         </Route>
         <Route path="/notifications" element={<NotificationList />} />
         <Route path="/checkout/:tenderRef" element={<CheckoutPage />} />
+        <Route path="/invoice" element={<InvoicePage />} /> {/* Add route for InvoicePage */}
         {/* Add more routes here */}
       </Routes>
       <Footer />

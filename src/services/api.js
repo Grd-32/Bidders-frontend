@@ -14,12 +14,6 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-// Payment initiation API call (Flutterwave)
-export const initiateFlutterwavePayment = async (paymentData) => {
-  const response = await API.post('/payment/initiate', paymentData);
-  return response;
-};
-
 // Get user details from backend
 export const getUserDetails = async () => {
   const response = await API.get('/auth/user');
