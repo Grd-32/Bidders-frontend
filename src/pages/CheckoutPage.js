@@ -39,6 +39,8 @@ const CheckoutPage = () => {
 
     try {
       const { data } = await initiateFlutterwavePayment(formData);
+      // Store form data in sessionStorage before redirecting
+      sessionStorage.setItem('checkoutData', JSON.stringify(formData));
       // Redirect to Flutterwave payment link
       window.location.href = data.paymentLink;
       setSuccess(true);
