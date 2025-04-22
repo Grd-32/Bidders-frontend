@@ -43,3 +43,9 @@ export const updateUser = data => API.put('/admin/users', data);
 export const updateUserRole = data => API.put('/admin/users/role', data);
 export const fetchNotifications = () => API.get('/notifications');
 export const initiateMpesaPayment = (payload) => API.post('/payment/mpesa', payload);
+
+// Verify payment status using transaction reference
+export const verifyPayment = async (transactionRef) => {
+  const response = await API.get(`/payment/verify?tx_ref=${transactionRef}`);
+  return response;
+};

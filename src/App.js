@@ -25,6 +25,7 @@ import ContactPage from './pages/Contact';
 import Payment from './pages/Payment';
 import Terms from './pages/Terms';
 import Privacy from './pages/PrivacyPolicy';
+import PaymentConfirmationPage from './pages/PaymentConfirmationPage'; // Import the new page
 
 const App = () => {
   return (
@@ -61,6 +62,7 @@ const App = () => {
         </Route>
         <Route path="/notifications" element={<NotificationList />} />
         <Route path="/checkout/:tenderRef" element={<CheckoutPage />} />
+        <Route path="/payment-confirmation" element={<PaymentConfirmationPage />} /> {/* Add route for confirmation page */}
         {/* Add more routes here */}
       </Routes>
       <Footer />
